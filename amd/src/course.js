@@ -880,7 +880,9 @@ define(["jquery", "core/templates", "core/ajax", "format_tiles/browser_storage",
 
                         // Move overlay into #page element.
                         // Enables left and right drawers plus scroll bar remain on top when tile is open.
-                        if (page.length) {
+                        // Some themes (e.g. Edumy) use #page for the mobile header only.
+                        // Moving the overlay there puts it above the course in a separate stacking context.
+                        if (page.length && page.find(Selector.TILES).length) {
                             $(`#${OVERLAY_ID}`).appendTo(page).css('position', 'absolute');
                         }
 
